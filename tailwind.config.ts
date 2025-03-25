@@ -32,16 +32,16 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					50: '#eef2ff',
-					100: '#e0e7ff',
-					200: '#c7d2fe',
-					300: '#a5b4fc',
-					400: '#818cf8',
-					500: '#6366f1', // Main brand purple
-					600: '#4f46e5',
-					700: '#4338ca',
-					800: '#3730a3',
-					900: '#312e81',
+					50: '#f0f7ff',
+					100: '#d9e9ff',
+					200: '#bcd8ff',
+					300: '#8ebfff',
+					400: '#5899ff',
+					500: '#0055fb', // Fexol blue from logo
+					600: '#0040cc',
+					700: '#0033a3',
+					800: '#002870',
+					900: '#001b4d',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -58,16 +58,16 @@ export default {
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
-					50: '#f2fbfa',
-					100: '#d3f4f1',
-					200: '#a6e9e3',
-					300: '#71d5cd',
-					400: '#38b6ad', // Secondary brand teal
-					500: '#2ba59d',
-					600: '#208a82',
-					700: '#1d6c65',
-					800: '#1a5652',
-					900: '#184845',
+					50: '#ebfff7',
+					100: '#d0ffee',
+					200: '#a1ffde',
+					300: '#64ffc8',
+					400: '#22ffad',
+					500: '#00ff9d', // Fexol green from logo
+					600: '#00cc7d',
+					700: '#00995e',
+					800: '#007a4b',
+					900: '#00603c',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',

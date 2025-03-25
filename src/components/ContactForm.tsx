@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
@@ -137,7 +138,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-medium">Email</h3>
-                    <p className="text-gray-600">eduardocruz@fexol.com.br</p>
+                    <p className="text-gray-600">contato@fexol.com.br</p>
                   </div>
                 </div>
                 

@@ -40,3 +40,7 @@ Lembre-se de:
 ## Ambiente de Produção
 
 Para produção, modifique a URL no componente ContactForm para apontar para o endereço real do seu backend.
+
+## Email de Contato
+
+O email para onde os formulários serão enviados é: contato@fexol.com.br

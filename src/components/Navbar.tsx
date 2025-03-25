@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +34,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <a href="/" className="relative z-50">
-            <h1 className="text-2xl font-bold text-primary-500">Fexol</h1>
-          </a>
+          <Link to="/" className="relative z-50">
+            <img 
+              src="/lovable-uploads/7736affa-0cc0-4754-be47-b30bbc5752ea.png" 
+              alt="Fexol Logo" 
+              className="h-10 md:h-12" 
+            />
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -83,14 +88,13 @@ const Navbar = () => {
                     className="text-lg font-medium transition-colors hover:text-primary-500"
                     onClick={() => setIsOpen(false)}
                     style={{ animationDelay: `${i * 100}ms` }}
-                    className="animate-fade-up"
                   >
                     {item}
                   </a>
                 ))}
                 <Button 
                   asChild
-                  className="bg-primary-500 hover:bg-primary-600 button-transition mt-4 animate-fade-up"
+                  className="bg-primary-500 hover:bg-primary-600 button-transition mt-4"
                   style={{ animationDelay: '400ms' }}
                   onClick={() => setIsOpen(false)}
                 >

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -16,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 246 80% 60%;
+    --primary: 217 100% 49%; /* Fexol blue */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 240 4.8% 95.9%;
@@ -25,7 +24,7 @@
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 174 53% 47%;
+    --accent: 157 100% 50%; /* Fexol green */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,7 +32,7 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 246 80% 60%;
+    --ring: 217 100% 49%; /* Fexol blue */
 
     --radius: 0.75rem;
   }
@@ -48,7 +47,7 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 246 80% 60%;
+    --primary: 217 100% 49%; /* Fexol blue */
     --primary-foreground: 0 0% 98%;
 
     --secondary: 240 3.7% 15.9%;
@@ -57,7 +56,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 174 53% 47%;
+    --accent: 157 100% 50%; /* Fexol green */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -65,7 +64,7 @@
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 246 80% 60%;
+    --ring: 217 100% 49%; /* Fexol blue */
   }
 }
 

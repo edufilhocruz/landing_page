@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const footerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,13 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Fexol</h2>
+            <Link to="/">
+              <img 
+                src="/lovable-uploads/7736affa-0cc0-4754-be47-b30bbc5752ea.png" 
+                alt="Fexol Logo" 
+                className="h-10 md:h-12 brightness-[2]" 
+              />
+            </Link>
             <p className="text-gray-300">
               Potencializando o desenvolvimento de software com equipes dedicadas e altamente qualificadas.
             </p>
@@ -87,7 +94,7 @@ const Footer = () => {
               Entre em contato para saber como podemos ajudar a impulsionar seu projeto.
             </p>
             <p className="text-gray-300">
-              Email: eduardocruz@fexol.com.br
+              Email: contato@fexol.com.br
             </p>
             <p className="text-gray-300">
               Site: fexol.com.br
