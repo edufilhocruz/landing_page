@@ -89,16 +89,25 @@ const Footer = () => {
           </div>
           
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contato</h3>
-            <p className="text-gray-300">
-              Entre em contato para saber como podemos ajudar a impulsionar seu projeto.
-            </p>
-            <p className="text-gray-300">
-              Email: contato@fexol.com.br
-            </p>
-            <p className="text-gray-300">
-              Site: fexol.com.br
-            </p>
+            <h3 className="text-lg font-semibold">Links Rápidos</h3>
+            <ul className="space-y-2">
+              {[
+                'Sobre Nós',
+                'Blog',
+                'Carreiras',
+                'Política de Privacidade',
+                'Termos de Serviço'
+              ].map((item) => (
+                <li key={item}>
+                  <a 
+                    href="#"
+                    className="text-gray-300 hover:text-primary-400 transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         
