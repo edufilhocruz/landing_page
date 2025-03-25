@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
@@ -66,32 +65,39 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // For demonstration purposes, we'll simulate a successful submission
-      // In a real implementation, you would send this data to your backend
       console.log('Form data to be sent:', formData);
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Show success message
-      toast({
-        title: "Formulário enviado com sucesso!",
-        description: "Entraremos em contato em breve.",
-        variant: "default",
+      const response = await fetch('http://localhost:3001/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
       
-      // Reset form
-      if (formRef.current) {
-        formRef.current.reset();
+      const data = await response.json();
+      
+      if (data.success) {
+        toast({
+          title: "Formulário enviado com sucesso!",
+          description: "Entraremos em contato em breve.",
+          variant: "default",
+        });
+        
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          projectType: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data.message || 'Erro ao enviar formulário');
       }
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        projectType: '',
-        message: ''
-      });
     } catch (error) {
       toast({
         title: "Erro ao enviar formulário",
