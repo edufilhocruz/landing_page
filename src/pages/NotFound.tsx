@@ -1,8 +1,8 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, RefreshCcw } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -27,19 +27,31 @@ const NotFound = () => {
         
         <h1 className="text-4xl font-bold mb-4">Página não encontrada</h1>
         <p className="text-xl text-gray-600 mb-8">
-          A página que você está procurando não existe ou foi movida.
+          A página "{location.pathname}" não existe ou foi movida.
         </p>
         
-        <Button 
-          asChild
-          className="bg-primary-500 hover:bg-primary-600 button-transition"
-          size="lg"
-        >
-          <a href="/">
-            <ChevronLeft className="mr-2 h-4 w-4" />
-            Voltar para a página inicial
-          </a>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            asChild
+            className="bg-primary-500 hover:bg-primary-600 button-transition"
+            size="lg"
+          >
+            <Link to="/">
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              Voltar para a página inicial
+            </Link>
+          </Button>
+          
+          <Button 
+            onClick={() => window.location.reload()}
+            variant="outline"
+            size="lg"
+            className="button-transition"
+          >
+            <RefreshCcw className="mr-2 h-4 w-4" />
+            Recarregar a página
+          </Button>
+        </div>
       </div>
     </div>
   );
