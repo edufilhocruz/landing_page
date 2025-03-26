@@ -44,7 +44,7 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {["Serviços", "Como Funciona", "Vantagens", "FAQ"].map((item) => (
+            {["Serviços", "Como Funciona", "Vantagens", "FAQ", "Growth Sales"].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
@@ -81,7 +81,7 @@ const Navbar = () => {
           {isOpen && (
             <div className="fixed inset-0 bg-white z-40 md:hidden animate-fade-in">
               <div className="flex flex-col items-center justify-center h-full space-y-8">
-                {["Serviços", "Como Funciona", "Vantagens", "FAQ"].map((item, i) => (
+                {["Serviços", "Como Funciona", "Vantagens", "FAQ", "Growth Sales"].map((item, i) => (
                   <a 
                     key={item}
                     href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
