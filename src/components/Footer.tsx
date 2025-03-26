@@ -51,22 +51,6 @@ const Footer = () => {
           </div>
           
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Links Rápidos</h3>
-            <ul className="space-y-2">
-              {['Serviços', 'Como Funciona', 'Vantagens', 'FAQ', 'Contato'].map((item) => (
-                <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-gray-300 hover:text-primary-400 transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div className="space-y-4">
             <h3 className="text-lg font-semibold">Serviços</h3>
             <ul className="space-y-2">
               {[
@@ -79,6 +63,22 @@ const Footer = () => {
                 <li key={item}>
                   <a 
                     href="#serviços"
+                    className="text-gray-300 hover:text-primary-400 transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Links Rápidos</h3>
+            <ul className="space-y-2">
+              {['Serviços', 'Como Funciona', 'Vantagens', 'FAQ', 'Contato'].map((item) => (
+                <li key={item}>
+                  <a 
+                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-gray-300 hover:text-primary-400 transition-colors"
                   >
                     {item}
