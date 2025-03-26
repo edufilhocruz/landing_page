@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowRight } from "lucide-react";
+import DOMPurify from "dompurify";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +29,16 @@ const ContactForm = () => {
     message: ''
   });
   
+  // Token for CSRF protection
+  const [csrfToken, setCsrfToken] = useState('');
+  
   useEffect(() => {
+    // Generate a simple CSRF token when component mounts
+    // In a production app, this should come from the server
+    const token = Math.random().toString(36).substring(2, 15);
+    setCsrfToken(token);
+    localStorage.setItem('csrfToken', token);
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -53,17 +63,50 @@ const ContactForm = () => {
     };
   }, []);
   
+  // Client-side form validation
+  const validateForm = () => {
+    const errors = [];
+    
+    if (!formData.name.trim()) errors.push('Nome é obrigatório');
+    if (!formData.email.trim()) errors.push('Email é obrigatório');
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      errors.push('Email inválido');
+    }
+    
+    if (errors.length > 0) {
+      toast({
+        title: "Erro de validação",
+        description: errors.join('. '),
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    return true;
+  };
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    // Sanitize input before storing it
+    const sanitizedValue = DOMPurify.sanitize(value);
+    setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
   };
   
   const handleSelectChange = (value: string) => {
-    setFormData(prev => ({ ...prev, projectType: value }));
+    // Sanitize select input
+    const sanitizedValue = DOMPurify.sanitize(value);
+    setFormData(prev => ({ ...prev, projectType: sanitizedValue }));
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) return;
+    
     setIsSubmitting(true);
     
     try {
@@ -73,9 +116,15 @@ const ContactForm = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken, // Add CSRF token to header
         },
         body: JSON.stringify(formData),
+        credentials: 'same-origin' // Include cookies for additional security
       });
+      
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
       
       const data = await response.json();
       
@@ -147,6 +196,9 @@ const ContactForm = () => {
             
             <div className="glass-card rounded-xl p-8">
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                {/* Hidden CSRF token field */}
+                <input type="hidden" name="_csrf" value={csrfToken} />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium">
@@ -160,6 +212,8 @@ const ContactForm = () => {
                       placeholder="Seu nome"
                       required
                       className="w-full"
+                      maxLength={100} // Limit input length
+                      autoComplete="name" // Improve autofill security
                     />
                   </div>
                   
@@ -176,6 +230,9 @@ const ContactForm = () => {
                       placeholder="seu@email.com"
                       required
                       className="w-full"
+                      maxLength={100}
+                      autoComplete="email"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" // HTML5 validation
                     />
                   </div>
                 </div>
@@ -192,6 +249,8 @@ const ContactForm = () => {
                       onChange={handleChange}
                       placeholder="(11) 98765-4321"
                       className="w-full"
+                      maxLength={20}
+                      autoComplete="tel"
                     />
                   </div>
                   
@@ -206,6 +265,8 @@ const ContactForm = () => {
                       onChange={handleChange}
                       placeholder="Nome da sua empresa"
                       className="w-full"
+                      maxLength={100}
+                      autoComplete="organization"
                     />
                   </div>
                 </div>
@@ -240,6 +301,7 @@ const ContactForm = () => {
                     placeholder="Descreva brevemente suas necessidades e objetivos"
                     rows={4}
                     className="w-full"
+                    maxLength={1000} // Limit textarea length
                   />
                 </div>
                 
